@@ -26,7 +26,7 @@ io.on("connection", (socket) => {
     "hello",
     `Your Connection Id Is ${socketId} \nconnected to web socket`
   );
-  socket.on('analyse',()=>{
+  socket.on('analyze',()=>{
     
   })
   socket.on("disconnect", () => {

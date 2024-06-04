@@ -1,12 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 
 function App() {
   const socketRef = useRef();
+  const [connectionMessage, setConnectionMessage] = useState("");
   useEffect(() => {
     const socket = io("http://localhost:8000");
     socket.on("hello", (message) => {
-      console.log(message);
+      setConnectionMessage(message);
     });
     socketRef.current = socket;
     return () => {
@@ -14,7 +15,11 @@ function App() {
     };
   }, []);
 
-  return <div>Hello world</div>;
+  return (
+    <div>
+      <p>{connectionMessage.split("\n")[0]}</p>
+    </div>
+  );
 }
 
 export default App;
